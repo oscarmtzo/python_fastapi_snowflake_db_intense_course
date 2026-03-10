@@ -2,6 +2,7 @@ import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from schemas.User import UserPydantic, User
+from schemas.Product import Product
 
 app = FastAPI()
 
@@ -51,7 +52,7 @@ async def users():
     print(user_list)
     return user_list
 
-#Obtener valor por Path /parameter selector / FastAPI ya lo resuelve
+#Obtener valor por Path /URI parameter / FastAPI ya lo resuelve
 @app.get("/users/{id}")
 async def user_id(id: int):
     """
@@ -72,7 +73,7 @@ async def user_id(id: int):
         print("")
         return ""
     
-#Obtener valor por Query selector
+#Obtener valor por Query parameter
 @app.get("/userquery")
 async def queryuser(id: int): #Resuelve pydantic automaticamnte mediante BaseModel resuelve el query selector
     print(users)
@@ -86,3 +87,13 @@ async def queryuser(id: int): #Resuelve pydantic automaticamnte mediante BaseMod
         return specific_user
     except:
         return {"error": f"no encontre ese usuario con el id: {id}"}
+"""
+"""    
+@app.post("/products")
+async def create_products(product: Product):
+    #pasarle un parametro
+    return {
+        "name": product.name,
+        "price": product.price,
+        "stock": product.stock
+    }
