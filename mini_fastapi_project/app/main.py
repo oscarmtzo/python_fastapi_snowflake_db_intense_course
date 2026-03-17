@@ -13,6 +13,6 @@ async def root(): # siempre que utilizamos un servidor debe de ser una operacion
 async def url():
     return {"msg": "hola mundo desde json del curso"}
 
-@app.post("")#contexto de fastapi para utilizar post (actualizar muchos camps de un usurario o crear uno nuevo)
+@app.post("/user")#contexto de fastapi para utilizar post (actualizar muchos camps de un usurario o crear uno nuevo)
 async def create_user(): #actualizar datos en bloque
     return {"msg": "nuevo"}
